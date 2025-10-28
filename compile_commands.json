@@ -1,0 +1,19 @@
+[
+  {
+    "arguments": [
+      "/usr/bin/avr-gcc",
+      "-I/usr/avr/include/",
+      "-Iinc",
+      "-Wall",
+      "-mmcu=atmega328p",
+      "-DF_CPU=16000000F",
+      "-c",
+      "-o",
+      "build/main.o",
+      "src/main.c"
+    ],
+    "directory": "/home/nand08/dev/pocket_tetris",
+    "file": "/home/nand08/dev/pocket_tetris/src/main.c",
+    "output": "/home/nand08/dev/pocket_tetris/build/main.o"
+  }
+]

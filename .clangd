@@ -1,0 +1,8 @@
+
+CompileFlags:
+  Compiler: /usr/bin/avr-gcc
+  Add: [--sysroot=/usr/avr, -Iinc, -mmcu=atmega328p, -DF_CPU=16000000F, -Wall]
+  BuiltinHeaders: QueryDriver
+
+InlayHints:
+  ParameterNames: false
