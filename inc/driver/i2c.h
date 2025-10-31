@@ -15,9 +15,6 @@ void i2c_setup(void);
  * @param addr address of the device in the i2c line
  * @param data byte to send
  *
- * @return true when the byte had been transmitted
- *         false when an error occurred mid transmission or the i2c transmitter
- * ended in an unexpected status
  */
 void i2c_sendbyte(uint8_t addr, uint8_t data);
 
@@ -27,9 +24,6 @@ void i2c_sendbyte(uint8_t addr, uint8_t data);
  * @param data pointer to an array of bytes
  * @param len size of the array, must be greater than 1
  *
- * @return true when all the bytes had been transmitted
- *         false when an error ocurred mid transmission or the i2c transmitter
- * ended in an unexpected status
  */
 void i2c_sendbytes(uint8_t addr, uint8_t* data, size_t len);
 
@@ -38,9 +32,6 @@ void i2c_sendbytes(uint8_t addr, uint8_t* data, size_t len);
  * @param addr address of the device in the i2c line
  * @param data pointer to a byte to store the received data
  *
- * @return true when the byte had been received
- *         false when an error occurred mid transmission or the i2c transmitter
- * ended in an unexpected status
  */
 void i2c_receivebyte(uint8_t addr, uint8_t* data);
 
@@ -50,9 +41,6 @@ void i2c_receivebyte(uint8_t addr, uint8_t* data);
  * @param data pointer to an array of bytes
  * @param len size of the array, must be greater than 1
  *
- * @return true when all the bytes had been received
- *         false when an error ocurred mid transmission or the i2c transmitter
- * ended in an unexpected status
  */
 void i2c_receivebytes(uint8_t addr, uint8_t* data, size_t len);
 

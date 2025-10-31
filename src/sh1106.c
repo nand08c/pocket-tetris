@@ -1,11 +1,10 @@
-
 #include "driver/sh1106.h"
 
 #include "driver/i2c.h"
 
 #define SH1106_I2C_ADDR 0x3C
 
-static uint64_t canvas[CANVAS_LEN];
+static uint64_t canvas[CANVAS_LEN] = {0xff};
 
 void sh1106_setup(void) {
     const uint8_t init_commands[] = {
@@ -15,7 +14,7 @@ void sh1106_setup(void) {
         0xA8, 0x3F,  // Set Multiplex Ratio
         0xD3, 0x00,  // Set Display Offset
         0x40,        // Set Display Start Line
-        0x8D, 0x14,  // Set Charge Pump Setting
+        0xAD, 0x8B,  // Set Charge Pump Setting (SH1106 specific)
         0x20, 0x02,  // Set Memory Addressing Mode
         0xA1,        // Set Segment Re-map
         0xC8,        // Set COM Output Scan Direction
@@ -37,23 +36,16 @@ void sh1106_canvas_clear(void) {
 }
 
 void sh1106_canvas_update(void) {
-    uint8_t command_buffer[2];
+    uint8_t command_buffer[4];
     uint8_t data_buffer[CANVAS_LEN + 1];  // +1 for the control byte
 
     for (uint8_t page = 0; page < 8; page++) {
-        // Set page address
-        command_buffer[0] = 0x00;  // Control byte for command
-        command_buffer[1] = 0xB0 | page;
-        i2c_sendbytes(SH1106_I2C_ADDR, command_buffer, sizeof(command_buffer));
-
-        // Set lower column start address (0x00)
-        command_buffer[0] = 0x00;
-        command_buffer[1] = 0x00;
-        i2c_sendbytes(SH1106_I2C_ADDR, command_buffer, sizeof(command_buffer));
-
-        // Set higher column start address (0x10)
-        command_buffer[0] = 0x00;
-        command_buffer[1] = 0x10;
+        // Set page and column address
+        command_buffer[0] = 0x00;         // Control byte for commands
+        command_buffer[1] = 0xB0 | page;  // Set page
+        command_buffer[2] = 0x02;  // Set lower column start address for 128x64
+                                   // display on SH1106
+        command_buffer[3] = 0x10;  // Set higher column start address
         i2c_sendbytes(SH1106_I2C_ADDR, command_buffer, sizeof(command_buffer));
 
         // Prepare data buffer

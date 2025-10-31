@@ -6,7 +6,26 @@
       "-Iinc",
       "-Wall",
       "-mmcu=atmega328p",
-      "-DF_CPU=16000000F",
+      "-DF_CPU=16000000U",
+      "-O0",
+      "-c",
+      "-o",
+      "build/i2c.o",
+      "src/i2c.c"
+    ],
+    "directory": "/home/nand08/dev/pocket_tetris",
+    "file": "/home/nand08/dev/pocket_tetris/src/i2c.c",
+    "output": "/home/nand08/dev/pocket_tetris/build/i2c.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/avr-gcc",
+      "-I/usr/avr/include/",
+      "-Iinc",
+      "-Wall",
+      "-mmcu=atmega328p",
+      "-DF_CPU=16000000U",
+      "-O0",
       "-c",
       "-o",
       "build/main.o",
@@ -15,5 +34,23 @@
     "directory": "/home/nand08/dev/pocket_tetris",
     "file": "/home/nand08/dev/pocket_tetris/src/main.c",
     "output": "/home/nand08/dev/pocket_tetris/build/main.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/avr-gcc",
+      "-I/usr/avr/include/",
+      "-Iinc",
+      "-Wall",
+      "-mmcu=atmega328p",
+      "-DF_CPU=16000000U",
+      "-O0",
+      "-c",
+      "-o",
+      "build/sh1106.o",
+      "src/sh1106.c"
+    ],
+    "directory": "/home/nand08/dev/pocket_tetris",
+    "file": "/home/nand08/dev/pocket_tetris/src/sh1106.c",
+    "output": "/home/nand08/dev/pocket_tetris/build/sh1106.o"
   }
 ]
