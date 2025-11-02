@@ -11,6 +11,12 @@ typedef struct {
 
 typedef uint64_t* canvas_t;
 
+#define CANVAS_LENGTH 128
+#define CANVAS_WIDTH 64
+
+#define P(x, y) \
+    (const point_t) { x, y }
+
 /**
  * Draws a pixel to the canvas
  */
@@ -51,5 +57,12 @@ void GE_fill_rect(point_t start, uint8_t width, uint8_t height);
  * size
  */
 void GE_putc(point_t pos, char c, uint8_t scale);
+
+/**
+ * Draws the character given with the point given as it's NW point horizontally
+ * @ param scale is an integer that multiplys the amount of pixels used as a
+ * size
+ */
+void GE_hputc(point_t pos, char c, uint8_t scale);
 
 #endif /* __GE_BASIC_H__ */
