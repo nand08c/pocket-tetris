@@ -10,12 +10,48 @@
       "-O0",
       "-c",
       "-o",
+      "build/GE_basic.o",
+      "src/GE_basic.c"
+    ],
+    "directory": "/home/nand08/dev/pocket-tetris",
+    "file": "/home/nand08/dev/pocket-tetris/src/GE_basic.c",
+    "output": "/home/nand08/dev/pocket-tetris/build/GE_basic.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/avr-gcc",
+      "-I/usr/avr/include/",
+      "-Iinc",
+      "-Wall",
+      "-mmcu=atmega328p",
+      "-DF_CPU=16000000U",
+      "-O0",
+      "-c",
+      "-o",
+      "build/GE.o",
+      "src/GE.c"
+    ],
+    "directory": "/home/nand08/dev/pocket-tetris",
+    "file": "/home/nand08/dev/pocket-tetris/src/GE.c",
+    "output": "/home/nand08/dev/pocket-tetris/build/GE.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/avr-gcc",
+      "-I/usr/avr/include/",
+      "-Iinc",
+      "-Wall",
+      "-mmcu=atmega328p",
+      "-DF_CPU=16000000U",
+      "-O0",
+      "-c",
+      "-o",
       "build/i2c.o",
       "src/i2c.c"
     ],
-    "directory": "/home/nand08/dev/pocket_tetris",
-    "file": "/home/nand08/dev/pocket_tetris/src/i2c.c",
-    "output": "/home/nand08/dev/pocket_tetris/build/i2c.o"
+    "directory": "/home/nand08/dev/pocket-tetris",
+    "file": "/home/nand08/dev/pocket-tetris/src/i2c.c",
+    "output": "/home/nand08/dev/pocket-tetris/build/i2c.o"
   },
   {
     "arguments": [
@@ -31,9 +67,9 @@
       "build/main.o",
       "src/main.c"
     ],
-    "directory": "/home/nand08/dev/pocket_tetris",
-    "file": "/home/nand08/dev/pocket_tetris/src/main.c",
-    "output": "/home/nand08/dev/pocket_tetris/build/main.o"
+    "directory": "/home/nand08/dev/pocket-tetris",
+    "file": "/home/nand08/dev/pocket-tetris/src/main.c",
+    "output": "/home/nand08/dev/pocket-tetris/build/main.o"
   },
   {
     "arguments": [
@@ -49,8 +85,8 @@
       "build/sh1106.o",
       "src/sh1106.c"
     ],
-    "directory": "/home/nand08/dev/pocket_tetris",
-    "file": "/home/nand08/dev/pocket_tetris/src/sh1106.c",
-    "output": "/home/nand08/dev/pocket_tetris/build/sh1106.o"
+    "directory": "/home/nand08/dev/pocket-tetris",
+    "file": "/home/nand08/dev/pocket-tetris/src/sh1106.c",
+    "output": "/home/nand08/dev/pocket-tetris/build/sh1106.o"
   }
 ]
