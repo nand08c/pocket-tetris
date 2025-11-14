@@ -4,18 +4,12 @@
 
 #include <stdint.h>
 
-typedef struct {
-    uint8_t x;
-    uint8_t y;
-} point_t;
+#include "original_types.h"
 
 typedef uint64_t* canvas_t;
 
 #define CANVAS_LENGTH 128
 #define CANVAS_WIDTH 64
-
-#define P(x, y) \
-    (const point_t) { x, y }
 
 /**
  * Draws a pixel to the canvas

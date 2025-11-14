@@ -1,6 +1,7 @@
 #include "buttons.h"
-#include <avr/io.h>
+
 #include <avr/interrupt.h>
+#include <avr/io.h>
 
 static volatile enum BUTTON pressed_button = NONE;
 
@@ -37,13 +38,9 @@ enum BUTTON poll(void) {
     return NONE;
 }
 
-enum BUTTON get_pressed_button(void) {
-    return pressed_button;
-}
+enum BUTTON get_pressed_button(void) { return pressed_button; }
 
-void clear_button_pressed(void) {
-    pressed_button = NONE;
-}
+void clear_button_pressed(void) { pressed_button = NONE; }
 
 ISR(PCINT1_vect) {
     // A simple debouncing mechanism
