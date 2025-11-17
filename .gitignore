@@ -5,3 +5,6 @@
 # OS-specific files
 .DS_Store
 Thumbs.db
+NOTES.txt
+compile_commands.json
+compile_commands.json

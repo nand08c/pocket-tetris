@@ -10,6 +10,24 @@
       "-O0",
       "-c",
       "-o",
+      "build/buttons.o",
+      "src/buttons.c"
+    ],
+    "directory": "/home/nand08/dev/pocket-tetris",
+    "file": "/home/nand08/dev/pocket-tetris/src/buttons.c",
+    "output": "/home/nand08/dev/pocket-tetris/build/buttons.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/avr-gcc",
+      "-I/usr/avr/include/",
+      "-Iinc",
+      "-Wall",
+      "-mmcu=atmega328p",
+      "-DF_CPU=16000000U",
+      "-O0",
+      "-c",
+      "-o",
       "build/GE_basic.o",
       "src/GE_basic.c"
     ],
@@ -88,5 +106,41 @@
     "directory": "/home/nand08/dev/pocket-tetris",
     "file": "/home/nand08/dev/pocket-tetris/src/sh1106.c",
     "output": "/home/nand08/dev/pocket-tetris/build/sh1106.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/avr-gcc",
+      "-I/usr/avr/include/",
+      "-Iinc",
+      "-Wall",
+      "-mmcu=atmega328p",
+      "-DF_CPU=16000000U",
+      "-O0",
+      "-c",
+      "-o",
+      "build/systimer.o",
+      "src/systimer.c"
+    ],
+    "directory": "/home/nand08/dev/pocket-tetris",
+    "file": "/home/nand08/dev/pocket-tetris/src/systimer.c",
+    "output": "/home/nand08/dev/pocket-tetris/build/systimer.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/avr-gcc",
+      "-I/usr/avr/include/",
+      "-Iinc",
+      "-Wall",
+      "-mmcu=atmega328p",
+      "-DF_CPU=16000000U",
+      "-O0",
+      "-c",
+      "-o",
+      "build/tune.o",
+      "src/tune.c"
+    ],
+    "directory": "/home/nand08/dev/pocket-tetris",
+    "file": "/home/nand08/dev/pocket-tetris/src/tune.c",
+    "output": "/home/nand08/dev/pocket-tetris/build/tune.o"
   }
 ]

@@ -1,13 +1,11 @@
 
-#include "driver/i2c.h"
-#include "driver/sh1106.h"
-#include "graphics/GE.h"
 
 int main(void) {
-    i2c_setup();
-    sh1106_setup();
-
-    GE_draw_score(3000);
-    GE_draw_tetris();
-    sh1106_canvas_update();
+    // Setup all the utilities that can't be executed in disorder
+    //
+    // Setup all The tasks in the main just the task object
+    //
+    // Run the scheduler in the main loop
+    while (1) {
+    }
 }

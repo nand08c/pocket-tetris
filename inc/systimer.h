@@ -4,6 +4,9 @@
 
 #include <stdint.h>
 
+#define MS_TO_TICKS(ms) (ms >> 2)
+#define TICKS_TO_MS(ticks) (ticks << 2)
+
 typedef uint16_t tick_t;
 
 /**
