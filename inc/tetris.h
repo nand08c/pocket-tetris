@@ -2,34 +2,31 @@
 #ifndef __TETRIS_H__
 #define __TETRIS_H__
 
-#include <stdint.h>
+#include <stdbool.h>
 
-#define Ylimit 16
-#define Xlimit 6
+#include "types.h"
 
-#define POSYMSK 0xf0
-#define POSXMSK 0x0f
+/**
+ * This header contains some definitions to work with the tetris array and the
+ * pieces in it
+ */
 
-enum PIECEFORM {
-    NONE = -1,
-    OPIECE,  // Square one
-    IPIECE,  // long one
-    TPIECE,  // T one
-    LPIECE,  // L shaped one
-    JPIECE,  // L inv shaped one
-    ZPIECE,  // squaigly one by lef side
-    SPIECE   // squaigly one by right side
-};
+/*
+ * we'll use an array of pieces_t to hold all the used tiles in the tetris grid
+ * colissions checks will be made in runtime using searching wich may be super
+ * taxing but we'll see this same array can be passed to be drawed in the screen
+ * at least
+ */
 
-typedef union {
-    uint8_t posy;
-    uint8_t posx;
-} tile_t;
+/**
+ * Takes a piece and checks if it collides with any other piece in the array in
+ * the given position
+ */
+bool check_colission(piece_t* p);
 
-typedef struct {
-    tile_t tiles[4];
-    tile_t origin;
-    enum PIECEFORM type;
-} piece_t;
+/**
+ * Take a piece from the array and rotate it
+ */
+bool piece_rotate(piece_t* p);
 
 #endif /* __TETRIS_H__ */

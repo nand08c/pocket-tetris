@@ -4,7 +4,7 @@
 
 #include <stdint.h>
 
-#include "original_types.h"
+#include "types.h"
 
 typedef uint64_t* canvas_t;
 

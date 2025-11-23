@@ -2,7 +2,7 @@
 #ifndef __BUTTONS_H__
 #define __BUTTONS_H__
 
-enum BUTTON { NONE = 0, LEFT, RIGHT, PUSHDOWN };
+enum BUTTON { NONE = 0, LEFT, RIGHT, PUSHDOWN, ROTATE };
 
 /**
  * Set the hardware for the buttons using level change interrupts in the pins:
