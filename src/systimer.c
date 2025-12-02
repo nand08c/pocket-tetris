@@ -4,6 +4,8 @@
 #include <avr/io.h>
 #include <util/atomic.h>
 
+#include "tune.h"
+
 static volatile tick_t systick_count = 0;
 
 /**
@@ -12,7 +14,10 @@ static volatile tick_t systick_count = 0;
  * This function is called when the TCNT1 counter reaches the value in OCR1A.
  * It increments the system tick counter every 2ms.
  */
-ISR(TIMER1_COMPA_vect) { systick_count++; }
+ISR(TIMER1_COMPA_vect) {
+    systick_count++;
+    tune_tick();
+}
 
 void systimer_init(void) {
     // Configure Timer1 for CTC mode

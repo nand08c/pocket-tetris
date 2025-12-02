@@ -16,9 +16,9 @@ void tune_setup(void);
 void tune_start(void);
 
 /**
- * Set the next note in the tuner
+ * Called periodically by the system timer (e.g. every 2ms) to manage note duration.
  */
-void tune_next(void);
+void tune_tick(void);
 
 /**
  * Returns if the tuner is being played
