@@ -7,23 +7,55 @@
 
 // Define a simple note structure
 typedef struct {
-    uint8_t pitch;    // OCR0A value (0 for silence)
-    uint8_t duration; // Duration in ticks
+    uint8_t pitch;     // OCR0A value (0 for silence)
+    uint8_t duration;  // Duration in ticks (1 tick = 2ms)
 } Note;
 
-// Simple melody placeholder
-// 0 pitch = silence
-// {0, 0} = End of song
+// Tetris Theme (Korobeiniki) - Transposed to B Minor to fit 2kHz-4kHz range
+// Frequencies: B7=3951Hz, F#7=2960Hz, G7=3135Hz, A7=3520Hz, E7=2637Hz
+// Calculated for Prescaler 64
 const Note MELODY[] = {
-    {71, 100}, // A
-    {63, 50},  // B
-    {59, 50},  // C
-    {53, 100}, // D
-    {59, 50},  // C
-    {63, 50},  // B
-    {71, 100}, // A
-    {0, 50},   // Rest
-    {0, 0}     // End of song
+    {31, 150},  // B7 (Dotted Quarter)
+    {31, 150},  // B7 (Dotted Quarter)
+    {41, 50},   // F#7 (Eighth)
+    {41, 50},   // F#7 (Eighth)
+    {39, 50},   // G7 (Eighth)
+    {39, 50},   // G7 (Eighth)
+    {35, 100},  // A7 (Quarter)
+    {35, 100},  // A7 (Quarter)
+    {39, 50},   // G7 (Eighth)
+    {39, 50},   // G7 (Eighth)
+    {41, 50},   // F#7 (Eighth)
+    {41, 50},   // F#7 (Eighth)
+    {46, 150},  // E7 (Dotted Quarter)
+    {46, 150},  // E7 (Dotted Quarter)
+    {46, 50},   // E7 (Eighth)
+    {46, 50},   // E7 (Eighth)
+    {39, 50},   // G7 (Eighth)
+    {39, 50},   // G7 (Eighth)
+    {31, 100},  // B7 (Quarter)
+    {31, 100},  // B7 (Quarter)
+    {35, 50},   // A7 (Eighth)
+    {35, 50},   // A7 (Eighth)
+    {39, 50},   // G7 (Eighth)
+    {39, 50},   // G7 (Eighth)
+    {41, 150},  // F#7 (Dotted Quarter)
+    {41, 150},  // F#7 (Dotted Quarter)
+    {39, 50},   // G7 (Eighth)
+    {39, 50},   // G7 (Eighth)
+    {35, 100},  // A7 (Quarter)
+    {35, 100},  // A7 (Quarter)
+    {31, 100},  // B7 (Quarter)
+    {31, 100},  // B7 (Quarter)
+    {39, 100},  // G7 (Quarter)
+    {39, 100},  // G7 (Quarter)
+    {46, 100},  // E7 (Quarter)
+    {46, 100},  // E7 (Quarter)
+    {46, 100},  // E7 (Quarter)
+    {46, 100},  // E7 (Quarter)
+    {0, 200},   // Rest
+    {0, 200},   // Rest
+    {0, 0}      // End of song
 };
 
 static volatile uint16_t note_index = 0;
@@ -33,10 +65,16 @@ static volatile bool is_playing = false;
 void tune_setup(void) {
     // Setup TIM0 to toggle OC0A on Compare Match and put into CTC Mode
     TCCR0A |= (1 << COM0A0) | (1 << WGM01);
-    
-    // Set Prescaler to 1024 (CS02 | CS00)
-    // F_CPU = 16MHz. 16MHz / 1024 = 15.625kHz timer clock.
-    TCCR0B |= (1 << CS02) | (1 << CS00);
+
+    // Setup pin output
+    DDRB |= (1 << PB1);
+    DDRD |= (1 << PD6);
+
+    // Set Prescaler to 64 (CS01 | CS00)
+    // F_CPU = 16MHz. 16MHz / 64 = 250kHz timer clock.
+    // Formula: f = 250000 / (2 * (1 + OCR0A))
+    // This enables reasonable 8-bit resolution for 2kHz-4kHz frequencies.
+    TCCR0B = (1 << CS01) | (1 << CS00);
 }
 
 static void tune_stop_hardware(void) {
@@ -76,10 +114,10 @@ void tune_tick(void) {
             note_index = 0;
         } else {
             if (pitch == 0) {
-                tune_stop_hardware(); // Rest
+                tune_stop_hardware();  // Rest
             } else {
                 OCR0A = pitch;
-                tune_start_hardware(); // Play
+                tune_start_hardware();  // Play
             }
             duration_counter = len;
             note_index++;
@@ -99,11 +137,9 @@ bool is_tuning(void) { return is_playing; }
 /**
  * Pause or Resume the playing of the tuner
  */
-void tune_pause(void) { 
-    is_playing = false; 
+void tune_pause(void) {
+    is_playing = false;
     tune_stop_hardware();
 }
 
-void tune_resume(void) { 
-    is_playing = true; 
-}
+void tune_resume(void) { is_playing = true; }
