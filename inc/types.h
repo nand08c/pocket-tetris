@@ -29,13 +29,11 @@ enum PIECEFORM {
 #define POSYMSK 0xf0
 #define POSXMSK 0x0f
 
-typedef union {
-    uint8_t posy;
-    uint8_t posx;
-} tile_t;
+typedef uint8_t tile_t;
 
 #define TILEX(tile) (tile & POSXMSK)
 #define TILEY(tile) ((tile & POSYMSK) >> 4)
+#define TILE(x, y) (((y) << 4) | ((x) & POSXMSK))
 
 typedef struct {
     tile_t tiles[4];
